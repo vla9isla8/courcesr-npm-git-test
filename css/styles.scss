@@ -1,27 +1,28 @@
-@lt-gray: #ddd;
-@backgroud-dark: #512DA8;
-@backgroud-light: #9575CD;
-@backgroud-pale: #D1C4E9;
 
-@carousel-item-height: 300px;
+$lt-gray: #ddd;
+$backgroud-dark: #512DA8;
+$backgroud-light: #9575CD;
+$backgroud-pale: #D1C4E9;
+
+$carousel-item-height: 300px;
 
 body{
     padding:50px 0px 0px 0px;
     z-index:0;
 }
 
-.zero-margin(@pad-up-dn: 0px, @pad-left-right: 0px) {
+@mixin zero-margin($pad-up-dn: 0px, $pad-left-right: 0px) {
     margin: 0px auto;
-    padding: @pad-up-dn @pad-left-right;
+    padding: $pad-up-dn $pad-left-right;
 }
 
 .jumbotron {
-    .zero-margin(70px,30px);
-    background: @background-light ;
+    @include zero-margin(70px,30px);
+    background: $backgroud-light;
     color:floralwhite;
 }
 .row-content {
-    .zero-margin(50px,0px);
+    @include zero-margin(50px,0px);
     border-bottom: 1px ridge;
     min-height:400px;
 }
@@ -42,27 +43,27 @@ body{
     margin: 25px 0 25px 0;
 }
 .footer {
-    .zero-margin(20px,0px);
-    background-color: @backgroud-pale;
+    @include zero-margin(20px,0px);
+    background-color: $backgroud-pale;
     color: #373a48
 }
 .tab-content {
-    border-left: 1px solid @lt-gray;
-    border-right: 1px solid @lt-gray;
-    border-bottom: 1px solid @lt-gray;
+    border-left: 1px solid $lt-gray;
+    border-right: 1px solid $lt-gray;
+    border-bottom: 1px solid $lt-gray;
     padding: 10px;
 }
 .carousel {
-    background: @backgroud-dark;
+    background: $backgroud-dark;
 }
 
 .carousel-item {
-  height: @carousel-item-height;
+  height: $carousel-item-height;
   img {
     position: absolute;
     top: 0;
     left: 0;
-    min-height: @carousel-item-height;
+    min-height: $carousel-item-height;
   }
 }
 #carouselButton {
