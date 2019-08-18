@@ -4,10 +4,17 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "npm run sass && npm run lite",
+    "start": "npm run watch:all",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lite": "lite-server",
-    "sass": "node-sass -o ./ ./css/"
+    "watch:sass": "onchange \"css/*\" -- npm run scss",
+    "scss": "node-sass -o ./ ./css/",
+    "watch:all": "parallelshell \"npm run watch:sass\" \"npm run lite\"",
+    "clean": "rimraf dist",
+    "copyfonts": "copyfiles -f node_modules/font-awesome/fonts/* dist/fonts",
+    "imagemin": "imagemin img/* --out-dir=dist/img",
+    "usemin": "usemin contactus.html -d dist --htmlmin -o dist/contactus.html && usemin aboutus.html -d dist --htmlmin -o dist/aboutus.html && usemin index.html -d dist --htmlmin -o dist/index.html",
+    "build": "npm run clean && mkdir dist && npm run imagemin && npm run copyfonts && npm run usemin"
   },
   "repository": {
     "type": "git",
@@ -20,13 +27,23 @@
   },
   "homepage": "https://github.com/vla9isla8/courcesr-npm-git-test#readme",
   "devDependencies": {
+    "copyfiles": "^2.1.1",
+    "cssmin": "^0.4.3",
+    "htmlmin": "^0.0.7",
+    "imagemin-cli": "^5.0.0",
     "lite-server": "^2.4.0",
-    "node-sass": "^4.7.2"
+    "node-sass": "^4.7.2",
+    "onchange": "3.3.0",
+    "parallelshell": "3.0.1",
+    "rimraf": "^3.0.0",
+    "uglifyjs": "^2.4.11",
+    "usemin-cli": "^0.5.1"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
     "bootstrap-social": "^5.1.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "popper.js": "^1.15.0"
   }
 }
